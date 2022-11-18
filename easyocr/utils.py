@@ -1,7 +1,6 @@
 from __future__ import print_function
 
 import torch
-import pickle
 import numpy as np
 import math
 import cv2
@@ -529,9 +528,9 @@ def compute_ratio_and_resize(img,width,height,model_height):
     ratio = width/height
     if ratio<1.0:
         ratio = calculate_ratio(width,height)
-        img = cv2.resize(img,(model_height,int(model_height*ratio)), interpolation=Image.ANTIALIAS)
+        img = cv2.resize(img,(model_height,int(model_height*ratio)), interpolation=Image.Resampling.LANCZOS)
     else:
-        img = cv2.resize(img,(int(model_height*ratio),model_height),interpolation=Image.ANTIALIAS)
+        img = cv2.resize(img,(int(model_height*ratio),model_height),interpolation=Image.Resampling.LANCZOS)
     return img,ratio
 
 

@@ -168,7 +168,7 @@ class Trainer(object):
             craft.load_state_dict(copyStateDict(self.net_param["craft"]))
 
         craft = craft.cuda()
-        craft = torch.nn.DataParallel(craft)
+        craft = craft
 
         torch.backends.cudnn.benchmark = True
 

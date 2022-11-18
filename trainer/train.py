@@ -71,7 +71,7 @@ def train(opt, show_number = 2, amp=False):
         if opt.new_prediction:
             model.Prediction = nn.Linear(model.SequenceModeling_output, len(pretrained_dict['module.Prediction.weight']))  
         
-        model = torch.nn.DataParallel(model).to(device) 
+        model = torch.model.to(device) 
         print(f'loading pretrained model from {opt.saved_model}')
         if opt.FT:
             model.load_state_dict(pretrained_dict, strict=False)
@@ -100,7 +100,7 @@ def train(opt, show_number = 2, amp=False):
                 if 'weight' in name:
                     param.data.fill_(1)
                 continue
-        model = torch.nn.DataParallel(model).to(device)
+        model = torch.model.to(device)
     
     model.train() 
     print("Model:")

@@ -191,7 +191,7 @@ class OCRDataset(Dataset):
 
 class ResizeNormalize(object):
 
-    def __init__(self, size, interpolation=Image.BICUBIC):
+    def __init__(self, size, interpolation=Image.Resampling.BICUBIC):
         self.size = size
         self.interpolation = interpolation
         self.toTensor = transforms.ToTensor()
@@ -256,7 +256,7 @@ class AlignCollate(object):
                 else:
                     resized_w = math.ceil(self.imgH * ratio)
 
-                resized_image = image.resize((resized_w, self.imgH), Image.BICUBIC)
+                resized_image = image.resize((resized_w, self.imgH), Image.Resampling.BICUBIC)
                 resized_images.append(transform(resized_image))
                 # resized_image.save('./image_test/%d_test.jpg' % w)
 

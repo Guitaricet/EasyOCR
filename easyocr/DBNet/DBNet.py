@@ -16,7 +16,8 @@ import pyclipper
 import torch
 
 from .model.constructor import Configurable
-# %%
+
+
 class DBNet:
     def __init__(self, 
                  backbone = "resnet18",

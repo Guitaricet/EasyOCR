@@ -1,6 +1,5 @@
 from PIL import Image
 import torch
-import torch.backends.cudnn as cudnn
 import torch.utils.data
 import torch.nn.functional as F
 import torchvision.transforms as transforms
@@ -90,7 +89,7 @@ class AlignCollate(object):
             else:
                 resized_w = math.ceil(self.imgH * ratio)
 
-            resized_image = image.resize((resized_w, self.imgH), Image.BICUBIC)
+            resized_image = image.resize((resized_w, self.imgH), Image.Resampling.BICUBIC)
             resized_images.append(transform(resized_image))
 
         image_tensors = torch.cat([t.unsqueeze(0) for t in resized_images], 0)
@@ -178,7 +177,7 @@ def get_recognizer(recog_network, network_params, character,\
             except:
                 pass
     else:
-        model = torch.nn.DataParallel(model).to(device)
+        model = model.to(device)
         model.load_state_dict(torch.load(model_path, map_location=device))
 
     return model, converter
