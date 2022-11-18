@@ -180,7 +180,7 @@ def get_recognizer(recog_network, network_params, character,\
         model = model.to(device)
         state_dict = torch.load(model_path, map_location=device)
         state_dict = {k.replace('module.', ''): v for k, v in state_dict.items()}
-        model.load_state_dict()
+        model.load_state_dict(state_dict)
 
     return model, converter
 
